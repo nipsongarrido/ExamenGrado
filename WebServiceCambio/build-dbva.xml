@@ -1,0 +1,103 @@
+<?xml version="1.0"?>
+<!--
+Licensee: 
+License Type: Evaluation
+-->
+<project name="Cambiomoneda" default="instrument">
+	<description>
+		Cambiomoneda
+	</description>
+
+	<property name="src.dir" location="src" />
+	<property name="lib.dir" location="lib" />
+	<property name="classes.dir" location="classes" />
+	<property name="javac.debug" value="on" />
+
+	<target name="compile" description="Compile Cambiomoneda">
+		<mkdir dir="${classes.dir}" />
+		<javac srcdir="${src.dir}" destdir="${classes.dir}" debug="${javac.debug}">
+			<classpath>
+				<fileset dir="${lib.dir}" includes="*.jar"/>
+			</classpath>
+		</javac>
+		<copy todir="${classes.dir}">
+			<fileset dir="${src.dir}">
+				<exclude name="**/*.java" />
+			</fileset>
+		</copy>
+	</target>
+
+	<target name="clean" description="Clean Cambiomoneda">
+		<delete dir="${classes.dir}" />
+	</target>
+
+	<target name="createSchema" description="Run create data schema sample">
+		<java classname="ormsamples.CreateCambiomonedaDatabaseSchema" fork="true">
+			<classpath>
+				<fileset dir="${lib.dir}" includes="*.jar"/>
+				<pathelement location="${classes.dir}"/>
+			</classpath>
+		</java>
+	</target>
+
+	<target name="createdata" description="Run create test data sample">
+		<java classname="ormsamples.CreateCambiomonedaData" fork="true">
+			<classpath>
+				<fileset dir="${lib.dir}" includes="*.jar"/>
+				<pathelement location="${classes.dir}"/>
+			</classpath>
+		</java>
+	</target>
+
+	<target name="retrievedata" description="Run retrieve data sample">
+		<java classname="ormsamples.RetrieveCambiomonedaData" fork="true">
+			<classpath>
+				<fileset dir="${lib.dir}" includes="*.jar"/>
+				<pathelement location="${classes.dir}"/>
+			</classpath>
+		</java>
+	</target>
+
+	<target name="deletedata" description="Run delete data sample">
+		<java classname="ormsamples.DeleteCambiomonedaData" fork="true">
+			<classpath>
+				<fileset dir="${lib.dir}" includes="*.jar"/>
+				<pathelement location="${classes.dir}"/>
+			</classpath>
+		</java>
+	</target>
+
+	<target name="dropschema" description="Run drop schema sample">
+		<java classname="ormsamples.DropCambiomonedaDatabaseSchema" fork="true">
+			<classpath>
+				<fileset dir="${lib.dir}" includes="*.jar"/>
+				<pathelement location="${classes.dir}"/>
+			</classpath>
+		</java>
+	</target>
+
+	<target name="listdata" description="Run list data sample">
+		<java classname="ormsamples.ListCambiomonedaData" fork="true">
+			<classpath>
+				<fileset dir="${lib.dir}" includes="*.jar"/>
+				<pathelement location="${classes.dir}"/>
+			</classpath>
+		</java>
+	</target>
+
+	<target name="instrument" depends="compile">
+		<taskdef name="instrument" classname="org.hibernate.tool.instrument.cglib.InstrumentTask">
+			<classpath>
+				<fileset dir="${lib.dir}" includes="*.jar"/>
+				<pathelement location="${classes.dir}"/>
+			</classpath>
+		</taskdef>
+		<instrument verbose="true">
+			<fileset dir="${classes.dir}">
+				<include name="orm\Tipo_consulta.class"/>
+				<include name="orm\Usuario.class"/>
+				<include name="orm\Consultas.class"/>
+			</fileset>
+		</instrument>
+	</target>
+</project>
