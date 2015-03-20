@@ -21,7 +21,7 @@ goto compile
 
 :compile
 if not exist "%_CLASSES%" md %_CLASSES%
-"%_JAVACCMD%" -encoding UTF-8 -d %_CLASSES% -classpath %_CLASSPATH% %_SOURCEPATH%\orm\*.java %_SOURCEPATH%\ormsamples\*.java 
+"%_JAVACCMD%" -encoding UTF-8 -d %_CLASSES% -classpath %_CLASSPATH% %_SOURCEPATH%\*.java %_SOURCEPATH%\orm\*.java 
 if not exist "%_CLASSES%\ormmapping" md %_CLASSES%\ormmapping
 if not %_SOURCEPATH% == %_CLASSES% xcopy %_SOURCEPATH%\ormmapping %_CLASSES%\ormmapping /s
 

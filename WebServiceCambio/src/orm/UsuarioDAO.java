@@ -1,3 +1,4 @@
+package orm;
 /**
  * "Visual Paradigm: DO NOT MODIFY THIS FILE!"
  * 
@@ -11,16 +12,15 @@
  * Licensee: 
  * License Type: Evaluation
  */
-package orm;
-
 import org.orm.*;
 import org.hibernate.Query;
+import org.hibernate.LockMode;
 import java.util.List;
 
 public class UsuarioDAO {
 	public static Usuario loadUsuarioByORMID(int id) throws PersistentException {
 		try {
-			PersistentSession session = orm.CambiomonedaPersistentManager.instance().getSession();
+			PersistentSession session = orm.ExamenPersistentManager.instance().getSession();
 			return loadUsuarioByORMID(session, id);
 		}
 		catch (Exception e) {
@@ -31,7 +31,7 @@ public class UsuarioDAO {
 	
 	public static Usuario getUsuarioByORMID(int id) throws PersistentException {
 		try {
-			PersistentSession session = orm.CambiomonedaPersistentManager.instance().getSession();
+			PersistentSession session = orm.ExamenPersistentManager.instance().getSession();
 			return getUsuarioByORMID(session, id);
 		}
 		catch (Exception e) {
@@ -42,7 +42,7 @@ public class UsuarioDAO {
 	
 	public static Usuario loadUsuarioByORMID(int id, org.hibernate.LockMode lockMode) throws PersistentException {
 		try {
-			PersistentSession session = orm.CambiomonedaPersistentManager.instance().getSession();
+			PersistentSession session = orm.ExamenPersistentManager.instance().getSession();
 			return loadUsuarioByORMID(session, id, lockMode);
 		}
 		catch (Exception e) {
@@ -53,7 +53,7 @@ public class UsuarioDAO {
 	
 	public static Usuario getUsuarioByORMID(int id, org.hibernate.LockMode lockMode) throws PersistentException {
 		try {
-			PersistentSession session = orm.CambiomonedaPersistentManager.instance().getSession();
+			PersistentSession session = orm.ExamenPersistentManager.instance().getSession();
 			return getUsuarioByORMID(session, id, lockMode);
 		}
 		catch (Exception e) {
@@ -64,7 +64,7 @@ public class UsuarioDAO {
 	
 	public static Usuario loadUsuarioByORMID(PersistentSession session, int id) throws PersistentException {
 		try {
-			return (Usuario) session.load(orm.Usuario.class, new Integer(id));
+			return (Usuario) session.load(Usuario.class, new Integer(id));
 		}
 		catch (Exception e) {
 			e.printStackTrace();
@@ -74,7 +74,7 @@ public class UsuarioDAO {
 	
 	public static Usuario getUsuarioByORMID(PersistentSession session, int id) throws PersistentException {
 		try {
-			return (Usuario) session.get(orm.Usuario.class, new Integer(id));
+			return (Usuario) session.get(Usuario.class, new Integer(id));
 		}
 		catch (Exception e) {
 			e.printStackTrace();
@@ -84,7 +84,7 @@ public class UsuarioDAO {
 	
 	public static Usuario loadUsuarioByORMID(PersistentSession session, int id, org.hibernate.LockMode lockMode) throws PersistentException {
 		try {
-			return (Usuario) session.load(orm.Usuario.class, new Integer(id), lockMode);
+			return (Usuario) session.load(Usuario.class, new Integer(id), lockMode);
 		}
 		catch (Exception e) {
 			e.printStackTrace();
@@ -94,7 +94,7 @@ public class UsuarioDAO {
 	
 	public static Usuario getUsuarioByORMID(PersistentSession session, int id, org.hibernate.LockMode lockMode) throws PersistentException {
 		try {
-			return (Usuario) session.get(orm.Usuario.class, new Integer(id), lockMode);
+			return (Usuario) session.get(Usuario.class, new Integer(id), lockMode);
 		}
 		catch (Exception e) {
 			e.printStackTrace();
@@ -104,7 +104,7 @@ public class UsuarioDAO {
 	
 	public static List queryUsuario(String condition, String orderBy) throws PersistentException {
 		try {
-			PersistentSession session = orm.CambiomonedaPersistentManager.instance().getSession();
+			PersistentSession session = orm.ExamenPersistentManager.instance().getSession();
 			return queryUsuario(session, condition, orderBy);
 		}
 		catch (Exception e) {
@@ -115,7 +115,7 @@ public class UsuarioDAO {
 	
 	public static List queryUsuario(String condition, String orderBy, org.hibernate.LockMode lockMode) throws PersistentException {
 		try {
-			PersistentSession session = orm.CambiomonedaPersistentManager.instance().getSession();
+			PersistentSession session = orm.ExamenPersistentManager.instance().getSession();
 			return queryUsuario(session, condition, orderBy, lockMode);
 		}
 		catch (Exception e) {
@@ -126,7 +126,7 @@ public class UsuarioDAO {
 	
 	public static Usuario[] listUsuarioByQuery(String condition, String orderBy) throws PersistentException {
 		try {
-			PersistentSession session = orm.CambiomonedaPersistentManager.instance().getSession();
+			PersistentSession session = orm.ExamenPersistentManager.instance().getSession();
 			return listUsuarioByQuery(session, condition, orderBy);
 		}
 		catch (Exception e) {
@@ -137,7 +137,7 @@ public class UsuarioDAO {
 	
 	public static Usuario[] listUsuarioByQuery(String condition, String orderBy, org.hibernate.LockMode lockMode) throws PersistentException {
 		try {
-			PersistentSession session = orm.CambiomonedaPersistentManager.instance().getSession();
+			PersistentSession session = orm.ExamenPersistentManager.instance().getSession();
 			return listUsuarioByQuery(session, condition, orderBy, lockMode);
 		}
 		catch (Exception e) {
@@ -147,7 +147,7 @@ public class UsuarioDAO {
 	}
 	
 	public static List queryUsuario(PersistentSession session, String condition, String orderBy) throws PersistentException {
-		StringBuffer sb = new StringBuffer("From orm.Usuario as Usuario");
+		StringBuffer sb = new StringBuffer("From Usuario as Usuario");
 		if (condition != null)
 			sb.append(" Where ").append(condition);
 		if (orderBy != null)
@@ -163,14 +163,14 @@ public class UsuarioDAO {
 	}
 	
 	public static List queryUsuario(PersistentSession session, String condition, String orderBy, org.hibernate.LockMode lockMode) throws PersistentException {
-		StringBuffer sb = new StringBuffer("From orm.Usuario as Usuario");
+		StringBuffer sb = new StringBuffer("From Usuario as Usuario");
 		if (condition != null)
 			sb.append(" Where ").append(condition);
 		if (orderBy != null)
 			sb.append(" Order By ").append(orderBy);
 		try {
 			Query query = session.createQuery(sb.toString());
-			query.setLockMode("this", lockMode);
+			query.setLockMode("Usuario", lockMode);
 			return query.list();
 		}
 		catch (Exception e) {
@@ -203,7 +203,7 @@ public class UsuarioDAO {
 	
 	public static Usuario loadUsuarioByQuery(String condition, String orderBy) throws PersistentException {
 		try {
-			PersistentSession session = orm.CambiomonedaPersistentManager.instance().getSession();
+			PersistentSession session = orm.ExamenPersistentManager.instance().getSession();
 			return loadUsuarioByQuery(session, condition, orderBy);
 		}
 		catch (Exception e) {
@@ -214,7 +214,7 @@ public class UsuarioDAO {
 	
 	public static Usuario loadUsuarioByQuery(String condition, String orderBy, org.hibernate.LockMode lockMode) throws PersistentException {
 		try {
-			PersistentSession session = orm.CambiomonedaPersistentManager.instance().getSession();
+			PersistentSession session = orm.ExamenPersistentManager.instance().getSession();
 			return loadUsuarioByQuery(session, condition, orderBy, lockMode);
 		}
 		catch (Exception e) {
@@ -241,7 +241,7 @@ public class UsuarioDAO {
 	
 	public static java.util.Iterator iterateUsuarioByQuery(String condition, String orderBy) throws PersistentException {
 		try {
-			PersistentSession session = orm.CambiomonedaPersistentManager.instance().getSession();
+			PersistentSession session = orm.ExamenPersistentManager.instance().getSession();
 			return iterateUsuarioByQuery(session, condition, orderBy);
 		}
 		catch (Exception e) {
@@ -252,7 +252,7 @@ public class UsuarioDAO {
 	
 	public static java.util.Iterator iterateUsuarioByQuery(String condition, String orderBy, org.hibernate.LockMode lockMode) throws PersistentException {
 		try {
-			PersistentSession session = orm.CambiomonedaPersistentManager.instance().getSession();
+			PersistentSession session = orm.ExamenPersistentManager.instance().getSession();
 			return iterateUsuarioByQuery(session, condition, orderBy, lockMode);
 		}
 		catch (Exception e) {
@@ -262,7 +262,7 @@ public class UsuarioDAO {
 	}
 	
 	public static java.util.Iterator iterateUsuarioByQuery(PersistentSession session, String condition, String orderBy) throws PersistentException {
-		StringBuffer sb = new StringBuffer("From orm.Usuario as Usuario");
+		StringBuffer sb = new StringBuffer("From Usuario as Usuario");
 		if (condition != null)
 			sb.append(" Where ").append(condition);
 		if (orderBy != null)
@@ -278,14 +278,14 @@ public class UsuarioDAO {
 	}
 	
 	public static java.util.Iterator iterateUsuarioByQuery(PersistentSession session, String condition, String orderBy, org.hibernate.LockMode lockMode) throws PersistentException {
-		StringBuffer sb = new StringBuffer("From orm.Usuario as Usuario");
+		StringBuffer sb = new StringBuffer("From Usuario as Usuario");
 		if (condition != null)
 			sb.append(" Where ").append(condition);
 		if (orderBy != null)
 			sb.append(" Order By ").append(orderBy);
 		try {
 			Query query = session.createQuery(sb.toString());
-			query.setLockMode("this", lockMode);
+			query.setLockMode("Usuario", lockMode);
 			return query.iterate();
 		}
 		catch (Exception e) {
@@ -295,12 +295,12 @@ public class UsuarioDAO {
 	}
 	
 	public static Usuario createUsuario() {
-		return new orm.Usuario();
+		return new Usuario();
 	}
 	
-	public static boolean save(orm.Usuario usuario) throws PersistentException {
+	public static boolean save(Usuario usuario) throws PersistentException {
 		try {
-			orm.CambiomonedaPersistentManager.instance().saveObject(usuario);
+			orm.ExamenPersistentManager.instance().saveObject(usuario);
 			return true;
 		}
 		catch (Exception e) {
@@ -309,9 +309,9 @@ public class UsuarioDAO {
 		}
 	}
 	
-	public static boolean delete(orm.Usuario usuario) throws PersistentException {
+	public static boolean delete(Usuario usuario) throws PersistentException {
 		try {
-			orm.CambiomonedaPersistentManager.instance().deleteObject(usuario);
+			orm.ExamenPersistentManager.instance().deleteObject(usuario);
 			return true;
 		}
 		catch (Exception e) {
@@ -320,11 +320,15 @@ public class UsuarioDAO {
 		}
 	}
 	
-	public static boolean deleteAndDissociate(orm.Usuario usuario)throws PersistentException {
+	public static boolean deleteAndDissociate(Usuario usuario)throws PersistentException {
 		try {
-			orm.Consultas[] lConsultass = usuario.consultas.toArray();
+			Consultas[] lConsultass = usuario.consultas.toArray();
 			for(int i = 0; i < lConsultass.length; i++) {
 				lConsultass[i].setUsuario(null);
+			}
+			orm.Login[] lLogins = usuario.login.toArray();
+			for(int i = 0; i < lLogins.length; i++) {
+				lLogins[i].setUsuario(null);
 			}
 			return delete(usuario);
 		}
@@ -334,11 +338,15 @@ public class UsuarioDAO {
 		}
 	}
 	
-	public static boolean deleteAndDissociate(orm.Usuario usuario, org.orm.PersistentSession session)throws PersistentException {
+	public static boolean deleteAndDissociate(Usuario usuario, org.orm.PersistentSession session)throws PersistentException {
 		try {
-			orm.Consultas[] lConsultass = usuario.consultas.toArray();
+			Consultas[] lConsultass = usuario.consultas.toArray();
 			for(int i = 0; i < lConsultass.length; i++) {
 				lConsultass[i].setUsuario(null);
+			}
+			orm.Login[] lLogins = usuario.login.toArray();
+			for(int i = 0; i < lLogins.length; i++) {
+				lLogins[i].setUsuario(null);
 			}
 			try {
 				session.delete(usuario);
@@ -353,9 +361,9 @@ public class UsuarioDAO {
 		}
 	}
 	
-	public static boolean refresh(orm.Usuario usuario) throws PersistentException {
+	public static boolean refresh(Usuario usuario) throws PersistentException {
 		try {
-			orm.CambiomonedaPersistentManager.instance().getSession().refresh(usuario);
+			orm.ExamenPersistentManager.instance().getSession().refresh(usuario);
 			return true;
 		}
 		catch (Exception e) {
@@ -364,9 +372,9 @@ public class UsuarioDAO {
 		}
 	}
 	
-	public static boolean evict(orm.Usuario usuario) throws PersistentException {
+	public static boolean evict(Usuario usuario) throws PersistentException {
 		try {
-			orm.CambiomonedaPersistentManager.instance().getSession().evict(usuario);
+			orm.ExamenPersistentManager.instance().getSession().evict(usuario);
 			return true;
 		}
 		catch (Exception e) {

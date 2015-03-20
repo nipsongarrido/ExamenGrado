@@ -45,6 +45,22 @@
 
         
            /**
+            * auto generated Axis2 call back method for logout method
+            * override this method for handling normal response from logout operation
+            */
+           public void receiveResultlogout(
+                    webservice.ServicioCambioStub.LogoutResponse result
+                        ) {
+           }
+
+          /**
+           * auto generated Axis2 Error handler
+           * override this method for handling error response from logout operation
+           */
+            public void receiveErrorlogout(java.lang.Exception e) {
+            }
+                
+           /**
             * auto generated Axis2 call back method for guardarConsulta method
             * override this method for handling normal response from guardarConsulta operation
             */
@@ -58,6 +74,70 @@
            * override this method for handling error response from guardarConsulta operation
            */
             public void receiveErrorguardarConsulta(java.lang.Exception e) {
+            }
+                
+           /**
+            * auto generated Axis2 call back method for agregarUsuario method
+            * override this method for handling normal response from agregarUsuario operation
+            */
+           public void receiveResultagregarUsuario(
+                    webservice.ServicioCambioStub.AgregarUsuarioResponse result
+                        ) {
+           }
+
+          /**
+           * auto generated Axis2 Error handler
+           * override this method for handling error response from agregarUsuario operation
+           */
+            public void receiveErroragregarUsuario(java.lang.Exception e) {
+            }
+                
+           /**
+            * auto generated Axis2 call back method for obtenerConsultas method
+            * override this method for handling normal response from obtenerConsultas operation
+            */
+           public void receiveResultobtenerConsultas(
+                    webservice.ServicioCambioStub.ObtenerConsultasResponse result
+                        ) {
+           }
+
+          /**
+           * auto generated Axis2 Error handler
+           * override this method for handling error response from obtenerConsultas operation
+           */
+            public void receiveErrorobtenerConsultas(java.lang.Exception e) {
+            }
+                
+           /**
+            * auto generated Axis2 call back method for enSesion method
+            * override this method for handling normal response from enSesion operation
+            */
+           public void receiveResultenSesion(
+                    webservice.ServicioCambioStub.EnSesionResponse result
+                        ) {
+           }
+
+          /**
+           * auto generated Axis2 Error handler
+           * override this method for handling error response from enSesion operation
+           */
+            public void receiveErrorenSesion(java.lang.Exception e) {
+            }
+                
+           /**
+            * auto generated Axis2 call back method for login method
+            * override this method for handling normal response from login operation
+            */
+           public void receiveResultlogin(
+                    webservice.ServicioCambioStub.LoginResponse result
+                        ) {
+           }
+
+          /**
+           * auto generated Axis2 Error handler
+           * override this method for handling error response from login operation
+           */
+            public void receiveErrorlogin(java.lang.Exception e) {
             }
                 
 

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">ConvertirMoneda</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string-array name="select">
+        <item>Nacional a Dolar</item>
+    	<item>Dolar a Nacional</item>
+	</string-array>
+    <string name="opcion">Elija consulta a realizar</string>
+    <string name="aceptar">Aceptar</string>
+
+</resources>

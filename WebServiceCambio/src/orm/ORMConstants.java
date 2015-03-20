@@ -18,8 +18,12 @@ public interface ORMConstants extends org.orm.util.ORMBaseConstants {
 	
 	final int KEY_CONSULTAS_USUARIO = 1699256557;
 	
+	final int KEY_LOGIN_USUARIO = 2031894584;
+	
 	final int KEY_TIPO_CONSULTA_CONSULTAS = 1622442527;
 	
 	final int KEY_USUARIO_CONSULTAS = 1053182253;
+	
+	final int KEY_USUARIO_LOGIN = 2089999096;
 	
 }

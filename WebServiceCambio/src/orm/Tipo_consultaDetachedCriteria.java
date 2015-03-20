@@ -1,3 +1,4 @@
+package orm;
 /**
  * "Visual Paradigm: DO NOT MODIFY THIS FILE!"
  * 
@@ -11,8 +12,6 @@
  * Licensee: 
  * License Type: Evaluation
  */
-package orm;
-
 import java.util.List;
 import org.hibernate.criterion.DetachedCriteria;
 import org.orm.PersistentSession;
@@ -21,17 +20,20 @@ import org.orm.criteria.*;
 public class Tipo_consultaDetachedCriteria extends AbstractORMDetachedCriteria {
 	public final IntegerExpression id;
 	public final StringExpression descripcion;
+	public final CollectionExpression consultas;
 	
 	public Tipo_consultaDetachedCriteria() {
-		super(orm.Tipo_consulta.class, orm.Tipo_consultaCriteria.class);
+		super(Tipo_consulta.class, Tipo_consultaCriteria.class);
 		id = new IntegerExpression("id", this.getDetachedCriteria());
 		descripcion = new StringExpression("descripcion", this.getDetachedCriteria());
+		consultas = new CollectionExpression("ORM_consultas", this.getDetachedCriteria());
 	}
 	
 	public Tipo_consultaDetachedCriteria(DetachedCriteria aDetachedCriteria) {
-		super(aDetachedCriteria, orm.Tipo_consultaCriteria.class);
+		super(aDetachedCriteria, Tipo_consultaCriteria.class);
 		id = new IntegerExpression("id", this.getDetachedCriteria());
 		descripcion = new StringExpression("descripcion", this.getDetachedCriteria());
+		consultas = new CollectionExpression("ORM_consultas", this.getDetachedCriteria());
 	}
 	
 	public ConsultasDetachedCriteria createConsultasCriteria() {

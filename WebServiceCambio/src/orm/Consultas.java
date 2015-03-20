@@ -1,3 +1,4 @@
+package orm;
 /**
  * "Visual Paradigm: DO NOT MODIFY THIS FILE!"
  * 
@@ -11,13 +12,8 @@
  * Licensee: 
  * License Type: Evaluation
  */
-package orm;
-
 import java.io.Serializable;
 import javax.persistence.*;
-/**
- * Tabla para almacenar las consultas realizadas en el sistema
- */
 @Entity
 @org.hibernate.annotations.Proxy(lazy=false)
 @Table(name="consultas")
@@ -27,11 +23,11 @@ public class Consultas implements Serializable {
 	
 	private void this_setOwner(Object owner, int key) {
 		if (key == orm.ORMConstants.KEY_CONSULTAS_TIPO_CONSULTA) {
-			this.tipo_consulta = (orm.Tipo_consulta) owner;
+			this.tipo_consulta = (Tipo_consulta) owner;
 		}
 		
 		else if (key == orm.ORMConstants.KEY_CONSULTAS_USUARIO) {
-			this.usuario = (orm.Usuario) owner;
+			this.usuario = (Usuario) owner;
 		}
 	}
 	
@@ -45,30 +41,28 @@ public class Consultas implements Serializable {
 	
 	@Column(name="id", nullable=false)	
 	@Id	
-	@GeneratedValue(generator="ORM_CONSULTAS_ID_GENERATOR")	
-	@org.hibernate.annotations.GenericGenerator(name="ORM_CONSULTAS_ID_GENERATOR", strategy="increment")	
+	@GeneratedValue(generator="CONSULTAS_ID_GENERATOR")	
+	@org.hibernate.annotations.GenericGenerator(name="CONSULTAS_ID_GENERATOR", strategy="native")	
 	private int id;
 	
-	@Column(name="cantidad_consultada", nullable=false, length=10)	
+	@Column(name="cantidad_consultada", nullable=false)	
 	private float cantidad_consultada;
 	
-	@Column(name="cantidad_cambiada", nullable=false, length=10)	
+	@Column(name="cantidad_cambiada", nullable=false)	
 	private float cantidad_cambiada;
 	
-	@Column(name="fecha_cambio", nullable=false, length=25)	
+	@Column(name="fecha_cambio", nullable=false, length=20)	
 	private String fecha_cambio;
 	
-	@ManyToOne(targetEntity=orm.Tipo_consulta.class, fetch=FetchType.LAZY)	
+	@ManyToOne(targetEntity=Tipo_consulta.class, fetch=FetchType.LAZY)	
 	@org.hibernate.annotations.Cascade({org.hibernate.annotations.CascadeType.LOCK})	
 	@JoinColumns({ @JoinColumn(name="tipo_consulta_id", referencedColumnName="id", nullable=false) })	
-	@org.hibernate.annotations.LazyToOne(value=org.hibernate.annotations.LazyToOneOption.NO_PROXY)	
-	private orm.Tipo_consulta tipo_consulta;
+	private Tipo_consulta tipo_consulta;
 	
-	@ManyToOne(targetEntity=orm.Usuario.class, fetch=FetchType.LAZY)	
+	@ManyToOne(targetEntity=Usuario.class, fetch=FetchType.LAZY)	
 	@org.hibernate.annotations.Cascade({org.hibernate.annotations.CascadeType.LOCK})	
 	@JoinColumns({ @JoinColumn(name="usuario_id", referencedColumnName="id", nullable=false) })	
-	@org.hibernate.annotations.LazyToOne(value=org.hibernate.annotations.LazyToOneOption.NO_PROXY)	
-	private orm.Usuario usuario;
+	private Usuario usuario;
 	
 	/**
 	 * id de la consulta
@@ -130,7 +124,7 @@ public class Consultas implements Serializable {
 		return fecha_cambio;
 	}
 	
-	public void setTipo_consulta(orm.Tipo_consulta value) {
+	public void setTipo_consulta(Tipo_consulta value) {
 		if (tipo_consulta != null) {
 			tipo_consulta.consultas.remove(this);
 		}
@@ -139,22 +133,22 @@ public class Consultas implements Serializable {
 		}
 	}
 	
-	public orm.Tipo_consulta getTipo_consulta() {
+	public Tipo_consulta getTipo_consulta() {
 		return tipo_consulta;
 	}
 	
 	/**
 	 * This method is for internal use only.
 	 */
-	public void setORM_Tipo_consulta(orm.Tipo_consulta value) {
+	public void setORM_Tipo_consulta(Tipo_consulta value) {
 		this.tipo_consulta = value;
 	}
 	
-	private orm.Tipo_consulta getORM_Tipo_consulta() {
+	private Tipo_consulta getORM_Tipo_consulta() {
 		return tipo_consulta;
 	}
 	
-	public void setUsuario(orm.Usuario value) {
+	public void setUsuario(Usuario value) {
 		if (usuario != null) {
 			usuario.consultas.remove(this);
 		}
@@ -163,18 +157,18 @@ public class Consultas implements Serializable {
 		}
 	}
 	
-	public orm.Usuario getUsuario() {
+	public Usuario getUsuario() {
 		return usuario;
 	}
 	
 	/**
 	 * This method is for internal use only.
 	 */
-	public void setORM_Usuario(orm.Usuario value) {
+	public void setORM_Usuario(Usuario value) {
 		this.usuario = value;
 	}
 	
-	private orm.Usuario getORM_Usuario() {
+	private Usuario getORM_Usuario() {
 		return usuario;
 	}
 	

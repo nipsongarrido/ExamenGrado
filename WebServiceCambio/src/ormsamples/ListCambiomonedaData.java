@@ -82,7 +82,7 @@ public class ListCambiomonedaData {
 				//listCambiomonedaData.listByCriteria();
 			}
 			finally {
-				orm.CambiomonedaPersistentManager.instance().disposePersistentManager();
+				orm.ExamenPersistentManager.instance().disposePersistentManager();
 			}
 		}
 		catch (Exception e) {

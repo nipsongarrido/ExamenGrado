@@ -1,3 +1,4 @@
+package orm;
 /**
  * "Visual Paradigm: DO NOT MODIFY THIS FILE!"
  * 
@@ -11,8 +12,6 @@
  * Licensee: 
  * License Type: Evaluation
  */
-package orm;
-
 import java.util.List;
 import org.hibernate.criterion.DetachedCriteria;
 import org.orm.PersistentSession;
@@ -23,21 +22,33 @@ public class ConsultasDetachedCriteria extends AbstractORMDetachedCriteria {
 	public final FloatExpression cantidad_consultada;
 	public final FloatExpression cantidad_cambiada;
 	public final StringExpression fecha_cambio;
+	public final IntegerExpression tipo_consultaId;
+	public final AssociationExpression tipo_consulta;
+	public final IntegerExpression usuarioId;
+	public final AssociationExpression usuario;
 	
 	public ConsultasDetachedCriteria() {
-		super(orm.Consultas.class, orm.ConsultasCriteria.class);
+		super(Consultas.class, ConsultasCriteria.class);
 		id = new IntegerExpression("id", this.getDetachedCriteria());
 		cantidad_consultada = new FloatExpression("cantidad_consultada", this.getDetachedCriteria());
 		cantidad_cambiada = new FloatExpression("cantidad_cambiada", this.getDetachedCriteria());
 		fecha_cambio = new StringExpression("fecha_cambio", this.getDetachedCriteria());
+		tipo_consultaId = new IntegerExpression("tipo_consulta.id", this.getDetachedCriteria());
+		tipo_consulta = new AssociationExpression("tipo_consulta", this.getDetachedCriteria());
+		usuarioId = new IntegerExpression("usuario.id", this.getDetachedCriteria());
+		usuario = new AssociationExpression("usuario", this.getDetachedCriteria());
 	}
 	
 	public ConsultasDetachedCriteria(DetachedCriteria aDetachedCriteria) {
-		super(aDetachedCriteria, orm.ConsultasCriteria.class);
+		super(aDetachedCriteria, ConsultasCriteria.class);
 		id = new IntegerExpression("id", this.getDetachedCriteria());
 		cantidad_consultada = new FloatExpression("cantidad_consultada", this.getDetachedCriteria());
 		cantidad_cambiada = new FloatExpression("cantidad_cambiada", this.getDetachedCriteria());
 		fecha_cambio = new StringExpression("fecha_cambio", this.getDetachedCriteria());
+		tipo_consultaId = new IntegerExpression("tipo_consulta.id", this.getDetachedCriteria());
+		tipo_consulta = new AssociationExpression("tipo_consulta", this.getDetachedCriteria());
+		usuarioId = new IntegerExpression("usuario.id", this.getDetachedCriteria());
+		usuario = new AssociationExpression("usuario", this.getDetachedCriteria());
 	}
 	
 	public Tipo_consultaDetachedCriteria createTipo_consultaCriteria() {

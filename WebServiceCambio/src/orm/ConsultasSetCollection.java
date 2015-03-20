@@ -1,3 +1,4 @@
+package orm;
 /**
  * "Visual Paradigm: DO NOT MODIFY THIS FILE!"
  * 
@@ -11,8 +12,6 @@
  * Licensee: 
  * License Type: Evaluation
  */
-package orm;
-
 import org.orm.*;
 
 public class ConsultasSetCollection extends org.orm.util.ORMSet {
@@ -97,7 +96,7 @@ public class ConsultasSetCollection extends org.orm.util.ORMSet {
 	}
 	
 	protected PersistentManager getPersistentManager() throws PersistentException {
-		return orm.CambiomonedaPersistentManager.instance();
+		return orm.ExamenPersistentManager.instance();
 	}
 	
 }

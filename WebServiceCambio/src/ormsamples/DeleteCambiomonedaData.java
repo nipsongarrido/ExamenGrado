@@ -7,7 +7,7 @@ package ormsamples;
 import org.orm.*;
 public class DeleteCambiomonedaData {
 	public void deleteTestData() throws PersistentException {
-		PersistentTransaction t = orm.CambiomonedaPersistentManager.instance().getSession().beginTransaction();
+		PersistentTransaction t = orm.ExamenPersistentManager.instance().getSession().beginTransaction();
 		try {
 			orm.Tipo_consulta lormTipo_consulta = orm.Tipo_consultaDAO.loadTipo_consultaByQuery(null, null);
 			// Delete the persistent object
@@ -33,7 +33,7 @@ public class DeleteCambiomonedaData {
 				deleteCambiomonedaData.deleteTestData();
 			}
 			finally {
-				orm.CambiomonedaPersistentManager.instance().disposePersistentManager();
+				orm.ExamenPersistentManager.instance().disposePersistentManager();
 			}
 		}
 		catch (Exception e) {

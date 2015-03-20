@@ -1,3 +1,4 @@
+package orm;
 /**
  * "Visual Paradigm: DO NOT MODIFY THIS FILE!"
  * 
@@ -11,16 +12,15 @@
  * Licensee: 
  * License Type: Evaluation
  */
-package orm;
-
 import org.orm.*;
 import org.hibernate.Query;
+import org.hibernate.LockMode;
 import java.util.List;
 
 public class Tipo_consultaDAO {
 	public static Tipo_consulta loadTipo_consultaByORMID(int id) throws PersistentException {
 		try {
-			PersistentSession session = orm.CambiomonedaPersistentManager.instance().getSession();
+			PersistentSession session = orm.ExamenPersistentManager.instance().getSession();
 			return loadTipo_consultaByORMID(session, id);
 		}
 		catch (Exception e) {
@@ -31,7 +31,7 @@ public class Tipo_consultaDAO {
 	
 	public static Tipo_consulta getTipo_consultaByORMID(int id) throws PersistentException {
 		try {
-			PersistentSession session = orm.CambiomonedaPersistentManager.instance().getSession();
+			PersistentSession session = orm.ExamenPersistentManager.instance().getSession();
 			return getTipo_consultaByORMID(session, id);
 		}
 		catch (Exception e) {
@@ -42,7 +42,7 @@ public class Tipo_consultaDAO {
 	
 	public static Tipo_consulta loadTipo_consultaByORMID(int id, org.hibernate.LockMode lockMode) throws PersistentException {
 		try {
-			PersistentSession session = orm.CambiomonedaPersistentManager.instance().getSession();
+			PersistentSession session = orm.ExamenPersistentManager.instance().getSession();
 			return loadTipo_consultaByORMID(session, id, lockMode);
 		}
 		catch (Exception e) {
@@ -53,7 +53,7 @@ public class Tipo_consultaDAO {
 	
 	public static Tipo_consulta getTipo_consultaByORMID(int id, org.hibernate.LockMode lockMode) throws PersistentException {
 		try {
-			PersistentSession session = orm.CambiomonedaPersistentManager.instance().getSession();
+			PersistentSession session = orm.ExamenPersistentManager.instance().getSession();
 			return getTipo_consultaByORMID(session, id, lockMode);
 		}
 		catch (Exception e) {
@@ -64,7 +64,7 @@ public class Tipo_consultaDAO {
 	
 	public static Tipo_consulta loadTipo_consultaByORMID(PersistentSession session, int id) throws PersistentException {
 		try {
-			return (Tipo_consulta) session.load(orm.Tipo_consulta.class, new Integer(id));
+			return (Tipo_consulta) session.load(Tipo_consulta.class, new Integer(id));
 		}
 		catch (Exception e) {
 			e.printStackTrace();
@@ -74,7 +74,7 @@ public class Tipo_consultaDAO {
 	
 	public static Tipo_consulta getTipo_consultaByORMID(PersistentSession session, int id) throws PersistentException {
 		try {
-			return (Tipo_consulta) session.get(orm.Tipo_consulta.class, new Integer(id));
+			return (Tipo_consulta) session.get(Tipo_consulta.class, new Integer(id));
 		}
 		catch (Exception e) {
 			e.printStackTrace();
@@ -84,7 +84,7 @@ public class Tipo_consultaDAO {
 	
 	public static Tipo_consulta loadTipo_consultaByORMID(PersistentSession session, int id, org.hibernate.LockMode lockMode) throws PersistentException {
 		try {
-			return (Tipo_consulta) session.load(orm.Tipo_consulta.class, new Integer(id), lockMode);
+			return (Tipo_consulta) session.load(Tipo_consulta.class, new Integer(id), lockMode);
 		}
 		catch (Exception e) {
 			e.printStackTrace();
@@ -94,7 +94,7 @@ public class Tipo_consultaDAO {
 	
 	public static Tipo_consulta getTipo_consultaByORMID(PersistentSession session, int id, org.hibernate.LockMode lockMode) throws PersistentException {
 		try {
-			return (Tipo_consulta) session.get(orm.Tipo_consulta.class, new Integer(id), lockMode);
+			return (Tipo_consulta) session.get(Tipo_consulta.class, new Integer(id), lockMode);
 		}
 		catch (Exception e) {
 			e.printStackTrace();
@@ -104,7 +104,7 @@ public class Tipo_consultaDAO {
 	
 	public static List queryTipo_consulta(String condition, String orderBy) throws PersistentException {
 		try {
-			PersistentSession session = orm.CambiomonedaPersistentManager.instance().getSession();
+			PersistentSession session = orm.ExamenPersistentManager.instance().getSession();
 			return queryTipo_consulta(session, condition, orderBy);
 		}
 		catch (Exception e) {
@@ -115,7 +115,7 @@ public class Tipo_consultaDAO {
 	
 	public static List queryTipo_consulta(String condition, String orderBy, org.hibernate.LockMode lockMode) throws PersistentException {
 		try {
-			PersistentSession session = orm.CambiomonedaPersistentManager.instance().getSession();
+			PersistentSession session = orm.ExamenPersistentManager.instance().getSession();
 			return queryTipo_consulta(session, condition, orderBy, lockMode);
 		}
 		catch (Exception e) {
@@ -126,7 +126,7 @@ public class Tipo_consultaDAO {
 	
 	public static Tipo_consulta[] listTipo_consultaByQuery(String condition, String orderBy) throws PersistentException {
 		try {
-			PersistentSession session = orm.CambiomonedaPersistentManager.instance().getSession();
+			PersistentSession session = orm.ExamenPersistentManager.instance().getSession();
 			return listTipo_consultaByQuery(session, condition, orderBy);
 		}
 		catch (Exception e) {
@@ -137,7 +137,7 @@ public class Tipo_consultaDAO {
 	
 	public static Tipo_consulta[] listTipo_consultaByQuery(String condition, String orderBy, org.hibernate.LockMode lockMode) throws PersistentException {
 		try {
-			PersistentSession session = orm.CambiomonedaPersistentManager.instance().getSession();
+			PersistentSession session = orm.ExamenPersistentManager.instance().getSession();
 			return listTipo_consultaByQuery(session, condition, orderBy, lockMode);
 		}
 		catch (Exception e) {
@@ -147,7 +147,7 @@ public class Tipo_consultaDAO {
 	}
 	
 	public static List queryTipo_consulta(PersistentSession session, String condition, String orderBy) throws PersistentException {
-		StringBuffer sb = new StringBuffer("From orm.Tipo_consulta as Tipo_consulta");
+		StringBuffer sb = new StringBuffer("From Tipo_consulta as Tipo_consulta");
 		if (condition != null)
 			sb.append(" Where ").append(condition);
 		if (orderBy != null)
@@ -163,14 +163,14 @@ public class Tipo_consultaDAO {
 	}
 	
 	public static List queryTipo_consulta(PersistentSession session, String condition, String orderBy, org.hibernate.LockMode lockMode) throws PersistentException {
-		StringBuffer sb = new StringBuffer("From orm.Tipo_consulta as Tipo_consulta");
+		StringBuffer sb = new StringBuffer("From Tipo_consulta as Tipo_consulta");
 		if (condition != null)
 			sb.append(" Where ").append(condition);
 		if (orderBy != null)
 			sb.append(" Order By ").append(orderBy);
 		try {
 			Query query = session.createQuery(sb.toString());
-			query.setLockMode("this", lockMode);
+			query.setLockMode("Tipo_consulta", lockMode);
 			return query.list();
 		}
 		catch (Exception e) {
@@ -203,7 +203,7 @@ public class Tipo_consultaDAO {
 	
 	public static Tipo_consulta loadTipo_consultaByQuery(String condition, String orderBy) throws PersistentException {
 		try {
-			PersistentSession session = orm.CambiomonedaPersistentManager.instance().getSession();
+			PersistentSession session = orm.ExamenPersistentManager.instance().getSession();
 			return loadTipo_consultaByQuery(session, condition, orderBy);
 		}
 		catch (Exception e) {
@@ -214,7 +214,7 @@ public class Tipo_consultaDAO {
 	
 	public static Tipo_consulta loadTipo_consultaByQuery(String condition, String orderBy, org.hibernate.LockMode lockMode) throws PersistentException {
 		try {
-			PersistentSession session = orm.CambiomonedaPersistentManager.instance().getSession();
+			PersistentSession session = orm.ExamenPersistentManager.instance().getSession();
 			return loadTipo_consultaByQuery(session, condition, orderBy, lockMode);
 		}
 		catch (Exception e) {
@@ -241,7 +241,7 @@ public class Tipo_consultaDAO {
 	
 	public static java.util.Iterator iterateTipo_consultaByQuery(String condition, String orderBy) throws PersistentException {
 		try {
-			PersistentSession session = orm.CambiomonedaPersistentManager.instance().getSession();
+			PersistentSession session = orm.ExamenPersistentManager.instance().getSession();
 			return iterateTipo_consultaByQuery(session, condition, orderBy);
 		}
 		catch (Exception e) {
@@ -252,7 +252,7 @@ public class Tipo_consultaDAO {
 	
 	public static java.util.Iterator iterateTipo_consultaByQuery(String condition, String orderBy, org.hibernate.LockMode lockMode) throws PersistentException {
 		try {
-			PersistentSession session = orm.CambiomonedaPersistentManager.instance().getSession();
+			PersistentSession session = orm.ExamenPersistentManager.instance().getSession();
 			return iterateTipo_consultaByQuery(session, condition, orderBy, lockMode);
 		}
 		catch (Exception e) {
@@ -262,7 +262,7 @@ public class Tipo_consultaDAO {
 	}
 	
 	public static java.util.Iterator iterateTipo_consultaByQuery(PersistentSession session, String condition, String orderBy) throws PersistentException {
-		StringBuffer sb = new StringBuffer("From orm.Tipo_consulta as Tipo_consulta");
+		StringBuffer sb = new StringBuffer("From Tipo_consulta as Tipo_consulta");
 		if (condition != null)
 			sb.append(" Where ").append(condition);
 		if (orderBy != null)
@@ -278,14 +278,14 @@ public class Tipo_consultaDAO {
 	}
 	
 	public static java.util.Iterator iterateTipo_consultaByQuery(PersistentSession session, String condition, String orderBy, org.hibernate.LockMode lockMode) throws PersistentException {
-		StringBuffer sb = new StringBuffer("From orm.Tipo_consulta as Tipo_consulta");
+		StringBuffer sb = new StringBuffer("From Tipo_consulta as Tipo_consulta");
 		if (condition != null)
 			sb.append(" Where ").append(condition);
 		if (orderBy != null)
 			sb.append(" Order By ").append(orderBy);
 		try {
 			Query query = session.createQuery(sb.toString());
-			query.setLockMode("this", lockMode);
+			query.setLockMode("Tipo_consulta", lockMode);
 			return query.iterate();
 		}
 		catch (Exception e) {
@@ -295,12 +295,12 @@ public class Tipo_consultaDAO {
 	}
 	
 	public static Tipo_consulta createTipo_consulta() {
-		return new orm.Tipo_consulta();
+		return new Tipo_consulta();
 	}
 	
-	public static boolean save(orm.Tipo_consulta tipo_consulta) throws PersistentException {
+	public static boolean save(Tipo_consulta tipo_consulta) throws PersistentException {
 		try {
-			orm.CambiomonedaPersistentManager.instance().saveObject(tipo_consulta);
+			orm.ExamenPersistentManager.instance().saveObject(tipo_consulta);
 			return true;
 		}
 		catch (Exception e) {
@@ -309,9 +309,9 @@ public class Tipo_consultaDAO {
 		}
 	}
 	
-	public static boolean delete(orm.Tipo_consulta tipo_consulta) throws PersistentException {
+	public static boolean delete(Tipo_consulta tipo_consulta) throws PersistentException {
 		try {
-			orm.CambiomonedaPersistentManager.instance().deleteObject(tipo_consulta);
+			orm.ExamenPersistentManager.instance().deleteObject(tipo_consulta);
 			return true;
 		}
 		catch (Exception e) {
@@ -320,9 +320,9 @@ public class Tipo_consultaDAO {
 		}
 	}
 	
-	public static boolean deleteAndDissociate(orm.Tipo_consulta tipo_consulta)throws PersistentException {
+	public static boolean deleteAndDissociate(Tipo_consulta tipo_consulta)throws PersistentException {
 		try {
-			orm.Consultas[] lConsultass = tipo_consulta.consultas.toArray();
+			Consultas[] lConsultass = tipo_consulta.consultas.toArray();
 			for(int i = 0; i < lConsultass.length; i++) {
 				lConsultass[i].setTipo_consulta(null);
 			}
@@ -334,9 +334,9 @@ public class Tipo_consultaDAO {
 		}
 	}
 	
-	public static boolean deleteAndDissociate(orm.Tipo_consulta tipo_consulta, org.orm.PersistentSession session)throws PersistentException {
+	public static boolean deleteAndDissociate(Tipo_consulta tipo_consulta, org.orm.PersistentSession session)throws PersistentException {
 		try {
-			orm.Consultas[] lConsultass = tipo_consulta.consultas.toArray();
+			Consultas[] lConsultass = tipo_consulta.consultas.toArray();
 			for(int i = 0; i < lConsultass.length; i++) {
 				lConsultass[i].setTipo_consulta(null);
 			}
@@ -353,9 +353,9 @@ public class Tipo_consultaDAO {
 		}
 	}
 	
-	public static boolean refresh(orm.Tipo_consulta tipo_consulta) throws PersistentException {
+	public static boolean refresh(Tipo_consulta tipo_consulta) throws PersistentException {
 		try {
-			orm.CambiomonedaPersistentManager.instance().getSession().refresh(tipo_consulta);
+			orm.ExamenPersistentManager.instance().getSession().refresh(tipo_consulta);
 			return true;
 		}
 		catch (Exception e) {
@@ -364,9 +364,9 @@ public class Tipo_consultaDAO {
 		}
 	}
 	
-	public static boolean evict(orm.Tipo_consulta tipo_consulta) throws PersistentException {
+	public static boolean evict(Tipo_consulta tipo_consulta) throws PersistentException {
 		try {
-			orm.CambiomonedaPersistentManager.instance().getSession().evict(tipo_consulta);
+			orm.ExamenPersistentManager.instance().getSession().evict(tipo_consulta);
 			return true;
 		}
 		catch (Exception e) {

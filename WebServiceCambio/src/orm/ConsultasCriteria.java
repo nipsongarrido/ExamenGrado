@@ -1,3 +1,4 @@
+package orm;
 /**
  * "Visual Paradigm: DO NOT MODIFY THIS FILE!"
  * 
@@ -11,8 +12,6 @@
  * Licensee: 
  * License Type: Evaluation
  */
-package orm;
-
 import org.hibernate.Criteria;
 import org.orm.PersistentException;
 import org.orm.PersistentSession;
@@ -23,6 +22,10 @@ public class ConsultasCriteria extends AbstractORMCriteria {
 	public final FloatExpression cantidad_consultada;
 	public final FloatExpression cantidad_cambiada;
 	public final StringExpression fecha_cambio;
+	public final IntegerExpression tipo_consultaId;
+	public final AssociationExpression tipo_consulta;
+	public final IntegerExpression usuarioId;
+	public final AssociationExpression usuario;
 	
 	public ConsultasCriteria(Criteria criteria) {
 		super(criteria);
@@ -30,6 +33,10 @@ public class ConsultasCriteria extends AbstractORMCriteria {
 		cantidad_consultada = new FloatExpression("cantidad_consultada", this);
 		cantidad_cambiada = new FloatExpression("cantidad_cambiada", this);
 		fecha_cambio = new StringExpression("fecha_cambio", this);
+		tipo_consultaId = new IntegerExpression("tipo_consulta.id", this);
+		tipo_consulta = new AssociationExpression("tipo_consulta", this);
+		usuarioId = new IntegerExpression("usuario.id", this);
+		usuario = new AssociationExpression("usuario", this);
 	}
 	
 	public ConsultasCriteria(PersistentSession session) {
@@ -37,7 +44,7 @@ public class ConsultasCriteria extends AbstractORMCriteria {
 	}
 	
 	public ConsultasCriteria() throws PersistentException {
-		this(orm.CambiomonedaPersistentManager.instance().getSession());
+		this(orm.ExamenPersistentManager.instance().getSession());
 	}
 	
 	public Tipo_consultaCriteria createTipo_consultaCriteria() {

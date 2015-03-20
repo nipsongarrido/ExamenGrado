@@ -1,3 +1,4 @@
+package orm;
 /**
  * "Visual Paradigm: DO NOT MODIFY THIS FILE!"
  * 
@@ -11,8 +12,6 @@
  * Licensee: 
  * License Type: Evaluation
  */
-package orm;
-
 import java.io.Serializable;
 import javax.persistence.*;
 /**
@@ -43,14 +42,14 @@ public class Tipo_consulta implements Serializable {
 	
 	@Column(name="id", nullable=false)	
 	@Id	
-	@GeneratedValue(generator="ORM_TIPO_CONSULTA_ID_GENERATOR")	
-	@org.hibernate.annotations.GenericGenerator(name="ORM_TIPO_CONSULTA_ID_GENERATOR", strategy="increment")	
+	@GeneratedValue(generator="TIPO_CONSULTA_ID_GENERATOR")	
+	@org.hibernate.annotations.GenericGenerator(name="TIPO_CONSULTA_ID_GENERATOR", strategy="native")	
 	private int id;
 	
 	@Column(name="descripcion", nullable=false, unique=true, length=100)	
 	private String descripcion;
 	
-	@OneToMany(mappedBy="tipo_consulta", targetEntity=orm.Consultas.class)	
+	@OneToMany(mappedBy="tipo_consulta", targetEntity=Consultas.class)	
 	@org.hibernate.annotations.Cascade({org.hibernate.annotations.CascadeType.SAVE_UPDATE, org.hibernate.annotations.CascadeType.LOCK})	
 	@org.hibernate.annotations.LazyCollection(org.hibernate.annotations.LazyCollectionOption.TRUE)	
 	private java.util.Set ORM_consultas = new java.util.HashSet();
@@ -96,7 +95,7 @@ public class Tipo_consulta implements Serializable {
 	}
 	
 	@Transient	
-	public final orm.ConsultasSetCollection consultas = new orm.ConsultasSetCollection(this, _ormAdapter, orm.ORMConstants.KEY_TIPO_CONSULTA_CONSULTAS, orm.ORMConstants.KEY_CONSULTAS_TIPO_CONSULTA, orm.ORMConstants.KEY_MUL_ONE_TO_MANY);
+	public final ConsultasSetCollection consultas = new ConsultasSetCollection(this, _ormAdapter, orm.ORMConstants.KEY_TIPO_CONSULTA_CONSULTAS, orm.ORMConstants.KEY_CONSULTAS_TIPO_CONSULTA, orm.ORMConstants.KEY_MUL_ONE_TO_MANY);
 	
 	public String toString() {
 		return String.valueOf(getId());

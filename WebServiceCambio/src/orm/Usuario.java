@@ -1,3 +1,4 @@
+package orm;
 /**
  * "Visual Paradigm: DO NOT MODIFY THIS FILE!"
  * 
@@ -11,8 +12,6 @@
  * Licensee: 
  * License Type: Evaluation
  */
-package orm;
-
 import java.io.Serializable;
 import javax.persistence.*;
 /**
@@ -29,6 +28,9 @@ public class Usuario implements Serializable {
 		if (key == orm.ORMConstants.KEY_USUARIO_CONSULTAS) {
 			return ORM_consultas;
 		}
+		else if (key == orm.ORMConstants.KEY_USUARIO_LOGIN) {
+			return ORM_login;
+		}
 		
 		return null;
 	}
@@ -43,8 +45,8 @@ public class Usuario implements Serializable {
 	
 	@Column(name="id", nullable=false)	
 	@Id	
-	@GeneratedValue(generator="ORM_USUARIO_ID_GENERATOR")	
-	@org.hibernate.annotations.GenericGenerator(name="ORM_USUARIO_ID_GENERATOR", strategy="increment")	
+	@GeneratedValue(generator="USUARIO_ID_GENERATOR")	
+	@org.hibernate.annotations.GenericGenerator(name="USUARIO_ID_GENERATOR", strategy="native")	
 	private int id;
 	
 	@Column(name="nombre_usuario", nullable=false, unique=true, length=100)	
@@ -53,10 +55,15 @@ public class Usuario implements Serializable {
 	@Column(name="contrasena", nullable=false, length=255)	
 	private String contrasena;
 	
-	@OneToMany(mappedBy="usuario", targetEntity=orm.Consultas.class)	
+	@OneToMany(mappedBy="usuario", targetEntity=Consultas.class)	
 	@org.hibernate.annotations.Cascade({org.hibernate.annotations.CascadeType.SAVE_UPDATE, org.hibernate.annotations.CascadeType.LOCK})	
 	@org.hibernate.annotations.LazyCollection(org.hibernate.annotations.LazyCollectionOption.TRUE)	
 	private java.util.Set ORM_consultas = new java.util.HashSet();
+	
+	@OneToMany(mappedBy="usuario", targetEntity=orm.Login.class)	
+	@org.hibernate.annotations.Cascade({org.hibernate.annotations.CascadeType.SAVE_UPDATE, org.hibernate.annotations.CascadeType.LOCK})	
+	@org.hibernate.annotations.LazyCollection(org.hibernate.annotations.LazyCollectionOption.TRUE)	
+	private java.util.Set ORM_login = new java.util.HashSet();
 	
 	private void setId(int value) {
 		this.id = value;
@@ -107,7 +114,18 @@ public class Usuario implements Serializable {
 	}
 	
 	@Transient	
-	public final orm.ConsultasSetCollection consultas = new orm.ConsultasSetCollection(this, _ormAdapter, orm.ORMConstants.KEY_USUARIO_CONSULTAS, orm.ORMConstants.KEY_CONSULTAS_USUARIO, orm.ORMConstants.KEY_MUL_ONE_TO_MANY);
+	public final ConsultasSetCollection consultas = new ConsultasSetCollection(this, _ormAdapter, orm.ORMConstants.KEY_USUARIO_CONSULTAS, orm.ORMConstants.KEY_CONSULTAS_USUARIO, orm.ORMConstants.KEY_MUL_ONE_TO_MANY);
+	
+	private void setORM_Login(java.util.Set value) {
+		this.ORM_login = value;
+	}
+	
+	private java.util.Set getORM_Login() {
+		return ORM_login;
+	}
+	
+	@Transient	
+	public final orm.LoginSetCollection login = new orm.LoginSetCollection(this, _ormAdapter, orm.ORMConstants.KEY_USUARIO_LOGIN, orm.ORMConstants.KEY_LOGIN_USUARIO, orm.ORMConstants.KEY_MUL_ONE_TO_MANY);
 	
 	public String toString() {
 		return String.valueOf(getId());

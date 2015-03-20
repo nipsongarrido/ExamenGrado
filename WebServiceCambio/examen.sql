@@ -1,0 +1,14 @@
+ALTER TABLE consultas DROP FOREIGN KEY FKconsultas268112;
+ALTER TABLE consultas DROP FOREIGN KEY FKconsultas15191;
+ALTER TABLE login DROP FOREIGN KEY FKlogin522814;
+DROP TABLE IF EXISTS tipo_consulta;
+DROP TABLE IF EXISTS usuario;
+DROP TABLE IF EXISTS consultas;
+DROP TABLE IF EXISTS login;
+CREATE TABLE tipo_consulta (id int(10) NOT NULL AUTO_INCREMENT comment 'id de tipo consulta', descripcion varchar(100) NOT NULL UNIQUE comment 'descripcion o nombre de la consulta', PRIMARY KEY (id)) comment='Tipos de consulta a realizar';
+CREATE TABLE usuario (id int(10) NOT NULL AUTO_INCREMENT, nombre_usuario varchar(100) NOT NULL comment 'nombre de usuario', contrasena varchar(255) NOT NULL comment 'contrasena del usuario', PRIMARY KEY (id), UNIQUE INDEX (nombre_usuario)) comment='tabla para almacenar usuarios';
+CREATE TABLE consultas (id int(10) NOT NULL AUTO_INCREMENT comment 'id de la consulta', cantidad_consultada float NOT NULL comment 'cantidad a cambiar', cantidad_cambiada float NOT NULL comment 'cantidad resultante en el cambio', fecha_cambio varchar(20) NOT NULL comment 'fecha en la que se realizo la consulta', tipo_consulta_id int(10) NOT NULL comment 'id del tipo de consulta', usuario_id int(10) NOT NULL comment 'id del usuario que realizo la consulta', PRIMARY KEY (id));
+CREATE TABLE login (id int(10) NOT NULL comment 'id del login', token varchar(500) NOT NULL comment 'valor del token para identificar la sesion', fecha_inicio varchar(20) NOT NULL comment 'fecha y hora en la que se inicio la sesion', `fecha _fin` varchar(20) NOT NULL comment 'fecha y hora en la que finaliza la sesion', usuarioid int(10) NOT NULL comment 'id del usuario al que pertence la sesion', PRIMARY KEY (id)) comment='en esta tabla se guardaran las sesiones de los usuarios';
+ALTER TABLE consultas ADD INDEX FKconsultas268112 (tipo_consulta_id), ADD CONSTRAINT FKconsultas268112 FOREIGN KEY (tipo_consulta_id) REFERENCES tipo_consulta (id) ON UPDATE Cascade ON DELETE Cascade;
+ALTER TABLE consultas ADD INDEX FKconsultas15191 (usuario_id), ADD CONSTRAINT FKconsultas15191 FOREIGN KEY (usuario_id) REFERENCES usuario (id) ON UPDATE Cascade ON DELETE Cascade;
+ALTER TABLE login ADD INDEX FKlogin522814 (usuarioid), ADD CONSTRAINT FKlogin522814 FOREIGN KEY (usuarioid) REFERENCES usuario (id);

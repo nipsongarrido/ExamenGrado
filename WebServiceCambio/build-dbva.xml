@@ -3,9 +3,9 @@
 Licensee: 
 License Type: Evaluation
 -->
-<project name="Cambiomoneda" default="instrument">
+<project name="Examen" default="compile">
 	<description>
-		Cambiomoneda
+		Examen
 	</description>
 
 	<property name="src.dir" location="src" />
@@ -13,7 +13,7 @@ License Type: Evaluation
 	<property name="classes.dir" location="classes" />
 	<property name="javac.debug" value="on" />
 
-	<target name="compile" description="Compile Cambiomoneda">
+	<target name="compile" description="Compile Examen">
 		<mkdir dir="${classes.dir}" />
 		<javac srcdir="${src.dir}" destdir="${classes.dir}" debug="${javac.debug}">
 			<classpath>
@@ -27,12 +27,12 @@ License Type: Evaluation
 		</copy>
 	</target>
 
-	<target name="clean" description="Clean Cambiomoneda">
+	<target name="clean" description="Clean Examen">
 		<delete dir="${classes.dir}" />
 	</target>
 
 	<target name="createSchema" description="Run create data schema sample">
-		<java classname="ormsamples.CreateCambiomonedaDatabaseSchema" fork="true">
+		<java classname="CreateExamenDatabaseSchema" fork="true">
 			<classpath>
 				<fileset dir="${lib.dir}" includes="*.jar"/>
 				<pathelement location="${classes.dir}"/>
@@ -41,7 +41,7 @@ License Type: Evaluation
 	</target>
 
 	<target name="createdata" description="Run create test data sample">
-		<java classname="ormsamples.CreateCambiomonedaData" fork="true">
+		<java classname="CreateExamenData" fork="true">
 			<classpath>
 				<fileset dir="${lib.dir}" includes="*.jar"/>
 				<pathelement location="${classes.dir}"/>
@@ -50,7 +50,7 @@ License Type: Evaluation
 	</target>
 
 	<target name="retrievedata" description="Run retrieve data sample">
-		<java classname="ormsamples.RetrieveCambiomonedaData" fork="true">
+		<java classname="RetrieveAndUpdateExamenData" fork="true">
 			<classpath>
 				<fileset dir="${lib.dir}" includes="*.jar"/>
 				<pathelement location="${classes.dir}"/>
@@ -59,7 +59,7 @@ License Type: Evaluation
 	</target>
 
 	<target name="deletedata" description="Run delete data sample">
-		<java classname="ormsamples.DeleteCambiomonedaData" fork="true">
+		<java classname="DeleteExamenData" fork="true">
 			<classpath>
 				<fileset dir="${lib.dir}" includes="*.jar"/>
 				<pathelement location="${classes.dir}"/>
@@ -68,7 +68,7 @@ License Type: Evaluation
 	</target>
 
 	<target name="dropschema" description="Run drop schema sample">
-		<java classname="ormsamples.DropCambiomonedaDatabaseSchema" fork="true">
+		<java classname="DropExamenDatabaseSchema" fork="true">
 			<classpath>
 				<fileset dir="${lib.dir}" includes="*.jar"/>
 				<pathelement location="${classes.dir}"/>
@@ -77,7 +77,7 @@ License Type: Evaluation
 	</target>
 
 	<target name="listdata" description="Run list data sample">
-		<java classname="ormsamples.ListCambiomonedaData" fork="true">
+		<java classname="ListExamenData" fork="true">
 			<classpath>
 				<fileset dir="${lib.dir}" includes="*.jar"/>
 				<pathelement location="${classes.dir}"/>
@@ -85,19 +85,4 @@ License Type: Evaluation
 		</java>
 	</target>
 
-	<target name="instrument" depends="compile">
-		<taskdef name="instrument" classname="org.hibernate.tool.instrument.cglib.InstrumentTask">
-			<classpath>
-				<fileset dir="${lib.dir}" includes="*.jar"/>
-				<pathelement location="${classes.dir}"/>
-			</classpath>
-		</taskdef>
-		<instrument verbose="true">
-			<fileset dir="${classes.dir}">
-				<include name="orm\Tipo_consulta.class"/>
-				<include name="orm\Usuario.class"/>
-				<include name="orm\Consultas.class"/>
-			</fileset>
-		</instrument>
-	</target>
 </project>

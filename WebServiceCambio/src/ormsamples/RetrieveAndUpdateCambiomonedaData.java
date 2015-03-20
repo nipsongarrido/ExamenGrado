@@ -7,7 +7,7 @@ package ormsamples;
 import org.orm.*;
 public class RetrieveAndUpdateCambiomonedaData {
 	public void retrieveAndUpdateTestData() throws PersistentException {
-		PersistentTransaction t = orm.CambiomonedaPersistentManager.instance().getSession().beginTransaction();
+		PersistentTransaction t = orm.ExamenPersistentManager.instance().getSession().beginTransaction();
 		try {
 			orm.Tipo_consulta lormTipo_consulta = orm.Tipo_consultaDAO.loadTipo_consultaByQuery(null, null);
 			// Update the properties of the persistent object
@@ -56,7 +56,7 @@ public class RetrieveAndUpdateCambiomonedaData {
 				//retrieveAndUpdateCambiomonedaData.retrieveByCriteria();
 			}
 			finally {
-				orm.CambiomonedaPersistentManager.instance().disposePersistentManager();
+				orm.ExamenPersistentManager.instance().disposePersistentManager();
 			}
 		}
 		catch (Exception e) {
